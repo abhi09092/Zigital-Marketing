@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zigital Marketer | Expert Digital Marketing & Strategy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles & Variables */
+        :root {
+            --dark-bg: #121212;
+            --charcoal: #1e1e1e;
+            --teal: #2dd4bf;
+            --teal-light: #5eead4;
+            --orange: #fb923c;
+            --orange-light: #fdba74;
+            --white: #f8fafc;
+            --gray: #94a3b8;
+            --light-gray: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--teal);
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--teal);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.6s ease, opacity 0.3s ease;
+            opacity: 0.5;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--teal);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Layout */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: var(--dark-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--teal);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(45, 212, 191, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .promo-bar {
+            background: var(--teal);
+            color: var(--dark-bg);
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .logo-img {
+            height: 50px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--teal);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo span:first-child {
+            color: var(--teal);
+        }
+
+        .logo span:last-child {
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 1rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hero-image {
+            width: 400px;
+            height: 400px;
+            z-index: 1;
+            background: var(--charcoal);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-image-content {
+            text-align: center;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero-image-content i {
+            font-size: 4rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        .hero-image-content h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .hero-image-content p {
+            color: var(--gray);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--charcoal);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--teal);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--teal);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin: 1.5rem 0;
+        }
+
+        /* Why Choose Us Section */
+        .why-us {
+            background: var(--charcoal);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--teal);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--teal);
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--dark-bg);
+            border: 2px solid var(--teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .step-content {
+            background: var(--charcoal);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--charcoal);
+        }
+
+        .testimonial-cards {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-cards::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background: var(--dark-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--teal);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Case Studies Section */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .case-study-card {
+            background: var(--charcoal);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .case-study-image {
+            height: 200px;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 2rem;
+        }
+
+        .case-study-content {
+            padding: 1.5rem;
+        }
+
+        .case-study-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+
+        .case-study-stat {
+            text-align: center;
+        }
+
+        .case-study-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .case-study-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Industries Section */
+        .industries {
+            background: var(--charcoal);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: var(--dark-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .industry-icon {
+            font-size: 2.5rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--charcoal);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            height: 250px;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 4rem;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-role {
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .member-social a {
+            color: var(--gray);
+            transition: color 0.3s;
+        }
+
+        .member-social a:hover {
+            color: var(--teal);
+        }
+
+        /* Blog Section */
+        .blog {
+            background: var(--charcoal);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 2rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--teal);
+        }
+
+        .contact-form {
+            background: var(--charcoal);
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--teal);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--teal);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--teal);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-image {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .step {
+                padding: 0;
+            }
+            
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-image {
+                margin: 2rem auto;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cursor, .cursor-follower {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="promo-bar">
+            <span>Limited Time Offer: Free AI Marketing Short-Course with every enrollment!</span>
+        </div>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Logo placeholder - replace with your actual logo image -->
+                <div class="logo-img">
+                    <div class="logo-img-placeholder">ZM</div>
+                </div>
+                <span>Zigital</span><span>Marketer</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Expert Digital Marketing & Strategy</h1>
+                <p>Transforming brands with creativity, data, and innovation. We deliver measurable results through cutting-edge digital marketing solutions tailored to your business goals.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn btn-primary">Explore Services</a>
+                    <a href="#contact" class="btn btn-secondary">Talk to Us</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-content">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data-Driven Results</h3>
+                    <p>We focus on metrics that matter to your business growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive digital marketing services designed to drive growth and maximize your online presence.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Search Marketing</h3>
+                    <p>Comprehensive SEO and PPC strategies to increase visibility and drive qualified traffic to your website.</p>
+                    <ul class="service-features">
+                        <li>Keyword Research & Strategy</li>
+                        <li>On-Page & Technical SEO</li>
+                        <li>PPC Campaign Management</li>
+                        <li>Conversion Rate Optimization</li>
+                    </ul>
+                    <div class="service-price">From $999/month</div>
+                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Social Media Strategy</h3>
+                    <p>Engage your audience and build brand loyalty through strategic social media management and advertising.</p>
+                    <ul class="service-features">
+                        <li>Content Strategy & Calendar</li>
+                        <li>Community Management</li>
+                        <li>Paid Social Advertising</li>
+                        <li>Performance Analytics</li>
+                    </ul>
+                    <div class="service-price">From $799/month</div>
+                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Branding & Visual Identity</h3>
+                    <p>Create a memorable brand that resonates with your target audience and stands out from competitors.</p>
+                    <ul class="service-features">
+                        <li>Brand Strategy Development</li>
+                        <li>Logo & Visual Identity Design</li>
+                        <li>Brand Guidelines</li>
+                        <li>Brand Voice & Messaging</li>
+                    </ul>
+                    <div class="service-price">From $1,499/project</div>
+                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Zigital Marketer</h2>
+                <p>We combine data-driven strategies with creative excellence to deliver exceptional results for our clients.</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat">
+                    <span class="stat-number" data-count="150">0</span>
+                    <span class="stat-label">Clients Served</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="8">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="245">0</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="97">0</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Data-Driven Approach</h3>
+                    <p>We base all strategies on comprehensive data analysis to ensure maximum ROI.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Creative Innovation</h3>
+                    <p>Our team brings fresh, innovative ideas to every project, setting you apart from competitors.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Rapid Implementation</h3>
+                    <p>We move quickly from strategy to execution, delivering results faster than traditional agencies.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnership Focused</h3>
+                    <p>We work as an extension of your team, building long-term relationships for sustained growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Case Studies</h2>
+                <p>Real results from our work with clients across various industries.</p>
+            </div>
+            
+            <div class="case-studies-grid">
+                <!-- Case Study 1 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>E-commerce Growth</h3>
+                        <p>How we helped an online retailer increase revenue by 150% in 6 months.</p>
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">150%</div>
+                                <div class="case-study-stat-label">Revenue Increase</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">80%</div>
+                                <div class="case-study-stat-label">Traffic Growth</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">6</div>
+                                <div class="case-study-stat-label">Months</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Read Full Study</a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>App Launch Success</h3>
+                        <p>Strategic marketing for a mobile app that achieved 50,000 downloads in first month.</p>
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">50K</div>
+                                <div class="case-study-stat-label">Downloads</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">4.8</div>
+                                <div class="case-study-stat-label">App Rating</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">1</div>
+                                <div class="case-study-stat-label">Month</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Read Full Study</a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 3 -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>B2B Lead Generation</h3>
+                        <p>How we generated 500+ qualified leads for a B2B software company in 3 months.</p>
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">500+</div>
+                                <div class="case-study-stat-label">Qualified Leads</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">35%</div>
+                                <div class="case-study-stat-label">Conversion Rate</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-number">3</div>
+                                <div class="case-study-stat-label">Months</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Read Full Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="container">
+            <div class="section-header">
+                <h2>Industries We Serve</h2>
+                <p>We have experience working with businesses across various sectors.</p>
+            </div>
+            
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Drive sales and increase customer lifetime value.</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Technology</h3>
+                    <p>Position your tech solution in a competitive market.</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>Build trust and connect with patients.</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Reach students and educators effectively.</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurant</h3>
+                    <p>Increase reservations and build loyalty.</p>
+                </div>
+                
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Professional Services</h3>
+                    <p>Establish authority and generate leads.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Team</h2>
+                <p>Meet the experts behind Zigital Marketer.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Alex Johnson</h3>
+                        <div class="member-role">Founder & CEO</div>
+                        <p>10+ years in digital marketing with expertise in growth strategy and analytics.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Williams</h3>
+                        <div class="member-role">Creative Director</div>
+                        <p>Brand strategist and visual designer with a passion for storytelling.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <div class="member-role">SEO Specialist</div>
+                        <p>Technical SEO expert with a background in web development.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Emily Rodriguez</h3>
+                        <div class="member-role">Social Media Manager</div>
+                        <p>Content creator and community builder with a knack for viral campaigns.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Insights</h2>
+                <p>Stay updated with the latest trends and strategies in digital marketing.</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 15, 2023</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3>The Future of AI in Digital Marketing</h3>
+                        <p>How artificial intelligence is transforming marketing strategies and what to expect in the coming years.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> April 28, 2023</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h3>SEO Trends You Can't Ignore in 2023</h3>
+                        <p>Discover the latest SEO strategies that will help you rank higher and drive more organic traffic.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> April 10, 2023</span>
+                            <span><i class="far fa-clock"></i> 4 min read</span>
+                        </div>
+                        <h3>Why Video Content is Dominating Social Media</h3>
+                        <p>Learn how to leverage video content to increase engagement and reach on social platforms.</p>
+                        <a href="#" class="btn btn-secondary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Start Your Digital Transformation</h2>
+                <p>Ready to take your business to the next level? Get in touch for a free consultation.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>hello@zigitalmarketer.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Visit Us</h3>
+                            <p>123 Digital Avenue, Tech City</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" class="form-control" required>
+                                <option value="">Select a service</option>
+                                <option value="seo">Search Marketing</option>
+                                <option value="social">Social Media Strategy</option>
+                                <option value="branding">Branding & Visual Identity</option>
+                                <option value="content">Content & Copywriting</option>
+                                <option value="analytics">Analytics & Reporting</option>
+                                <option value="web">Web Development</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Zigital Marketer</h3>
+                    <p>Transforming brands with creativity, data, and innovation. We deliver measurable results through cutting-edge digital marketing solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Search Marketing</a></li>
+                        <li><a href="#">Social Media Strategy</a></li>
+                        <li><a href="#">Branding & Identity</a></li>
+                        <li><a href="#">Content & Copywriting</a></li>
+                        <li><a href="#">Analytics & Reporting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Free Guides</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Skill Test</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Zigital Marketer. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+
+        // Interactive cursor effects
+        document.querySelectorAll('a, button, .service-card, .feature, .step, .testimonial-card, .case-study-card, .industry-card, .team-member, .blog-card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursorFollower.style.transform = 'scale(1.5)';
+                cursorFollower.style.opacity = '0.7';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorFollower.style.transform = 'scale(1)';
+                cursorFollower.style.opacity = '0.5';
+            });
+        });
+
+        // Animate stats counter
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats-container')) {
+                        animateStats();
+                    }
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe elements for animation
+            const elementsToObserve = document.querySelectorAll('.service-card, .feature, .step, .testimonial-card, .case-study-card, .industry-card, .team-member, .blog-card');
+            elementsToObserve.forEach(el => observer.observe(el));
+            
+            // Observe stats container
+            const statsContainer = document.querySelector('.stats-container');
+            if (statsContainer) observer.observe(statsContainer);
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenu && navLinks) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
