@@ -3,1659 +3,745 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zigital Marketer | Expert Digital Marketing & Strategy</title>
+    <title>Zigital Marketing | Premier Digital Marketing Agency</title>
+    <meta name="description" content="Zigital Marketing is a premier digital marketing agency specializing in SEO, social media marketing, PPC campaigns, and web development solutions.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00B4B7',
+                        secondary: '#E76B25',
+                        accent: '#000000'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Base Styles & Variables */
-        :root {
-            --dark-bg: #121212;
-            --charcoal: #1e1e1e;
-            --teal: #2dd4bf;
-            --teal-light: #5eead4;
-            --orange: #fb923c;
-            --orange-light: #fdba74;
-            --white: #f8fafc;
-            --gray: #94a3b8;
-            --light-gray: #e2e8f0;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            cursor: none;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--dark-bg);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
         }
-
-        /* Custom Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--teal);
-            pointer-events: none;
-            mix-blend-mode: difference;
-            z-index: 9999;
-            transition: transform 0.2s ease;
+        
+        .animate-border {
+            position: relative;
+            display: inline-block;
         }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--teal);
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.6s ease, opacity 0.3s ease;
-            opacity: 0.5;
+        
+        .animate-border::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00B4B7;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
         }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        
+        .animate-border:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
-
-        h1 {
-            font-size: 3.5rem;
-            color: var(--white);
+        
+        .hero-bg {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
         }
-
-        h2 {
+        
+        .counter {
             font-size: 2.5rem;
-            color: var(--teal);
+            font-weight: 700;
+            color: #00B4B7;
         }
-
-        h3 {
-            font-size: 1.8rem;
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
         }
-
-        p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
-        /* Layout */
-        section {
-            padding: 6rem 2rem;
+        
+        .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
             position: relative;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        .testimonial-card::before {
+            content: """;
+            font-size: 80px;
+            color: #00B4B7;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.2;
+            font-family: Georgia, serif;
         }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        
+        .tab-active {
+            background-color: #00B4B7;
+            color: white;
         }
-
-        .section-header p {
-            max-width: 700px;
-            margin: 0 auto;
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
         }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: none;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--teal);
-            color: var(--dark-bg);
-        }
-
-        .btn-primary:hover {
-            background: var(--teal-light);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--teal);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(45, 212, 191, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
+        
+        .portfolio-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .promo-bar {
-            background: var(--teal);
-            color: var(--dark-bg);
-            text-align: center;
-            padding: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .logo-img {
-            height: 50px;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-img-placeholder {
-            width: 50px;
-            height: 50px;
-            background: var(--teal);
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-bg);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .logo span:first-child {
-            color: var(--teal);
-        }
-
-        .logo span:last-child {
-            color: var(--white);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin: 0 1rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--teal);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--teal);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 100px;
-        }
-
-        .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .hero-image {
-            width: 400px;
-            height: 400px;
-            z-index: 1;
-            background: var(--charcoal);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .hero-image-content {
-            text-align: center;
-            padding: 2rem;
-            z-index: 2;
-        }
-
-        .hero-image-content i {
-            font-size: 4rem;
-            color: var(--teal);
-            margin-bottom: 1rem;
-        }
-
-        .hero-image-content h3 {
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .hero-image-content p {
-            color: var(--gray);
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--charcoal);
-            border-radius: 10px;
-            padding: 2rem;
+            background: rgba(0, 180, 183, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--teal);
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .service-features li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: var(--teal);
-            margin-right: 0.5rem;
-            font-weight: bold;
-        }
-
-        .service-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--teal);
-            margin: 1.5rem 0;
-        }
-
-        /* Why Choose Us Section */
-        .why-us {
-            background: var(--charcoal);
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 3rem 0;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--teal);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 2rem;
-            background: var(--dark-bg);
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--teal);
-            margin-bottom: 1rem;
-        }
-
-        /* Process Section */
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: 4rem;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--teal);
-            z-index: 0;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            padding: 0 1rem;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--dark-bg);
-            border: 2px solid var(--teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--teal);
-        }
-
-        .step-content {
-            background: var(--charcoal);
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: var(--charcoal);
-        }
-
-        .testimonial-cards {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 2rem 0;
-            scrollbar-width: none;
-        }
-
-        .testimonial-cards::-webkit-scrollbar {
-            display: none;
-        }
-
-        .testimonial-card {
-            min-width: 300px;
-            background: var(--dark-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: transform 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--teal);
-            margin-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-bg);
-            font-weight: bold;
-        }
-
-        .author-info h4 {
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            margin: 0;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Case Studies Section */
-        .case-studies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .case-study-card {
-            background: var(--charcoal);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .case-study-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .case-study-image {
-            height: 200px;
-            background: var(--teal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-bg);
-            font-size: 2rem;
-        }
-
-        .case-study-content {
-            padding: 1.5rem;
-        }
-
-        .case-study-stats {
-            display: flex;
-            justify-content: space-between;
-            margin: 1rem 0;
-        }
-
-        .case-study-stat {
-            text-align: center;
-        }
-
-        .case-study-stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--teal);
-        }
-
-        .case-study-stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* Industries Section */
-        .industries {
-            background: var(--charcoal);
-        }
-
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .industry-card {
-            background: var(--dark-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .industry-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .industry-icon {
-            font-size: 2.5rem;
-            color: var(--teal);
-            margin-bottom: 1rem;
-        }
-
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-member {
-            background: var(--charcoal);
-            border-radius: 10px;
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-        }
-
-        .member-image {
-            height: 250px;
-            background: var(--teal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-bg);
-            font-size: 4rem;
-        }
-
-        .member-info {
-            padding: 1.5rem;
-        }
-
-        .member-role {
-            color: var(--teal);
-            margin-bottom: 1rem;
-        }
-
-        .member-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .member-social a {
-            color: var(--gray);
-            transition: color 0.3s;
-        }
-
-        .member-social a:hover {
-            color: var(--teal);
-        }
-
-        /* Blog Section */
-        .blog {
-            background: var(--charcoal);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: var(--dark-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-image {
-            height: 200px;
-            background: var(--teal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-bg);
-            font-size: 2rem;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--charcoal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--teal);
-        }
-
-        .contact-form {
-            background: var(--charcoal);
-            border-radius: 10px;
-            padding: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--gray);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: var(--dark-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            color: var(--white);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--teal);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--teal);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--teal);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--dark-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover {
-            background: var(--teal);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-image {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .nav-links, .nav-cta {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .process-steps::before {
-                display: none;
-            }
-            
-            .step {
-                padding: 0;
-            }
-            
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-image {
-                margin: 2rem auto;
-                width: 100%;
-                max-width: 400px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            section {
-                padding: 4rem 1rem;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cursor, .cursor-follower {
-                display: none;
-            }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .footer-bg {
+            background-color: #f8f9fa;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
         }
     </style>
 </head>
-<body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
+<body class="bg-white text-accent">
     <!-- Header -->
-    <header>
-        <div class="promo-bar">
-            <span>Limited Time Offer: Free AI Marketing Short-Course with every enrollment!</span>
-        </div>
-        <nav class="navbar">
-            <div class="logo">
-                <!-- Logo placeholder - replace with your actual logo image -->
-                <div class="logo-img">
-                    <div class="logo-img-placeholder">ZM</div>
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <img src="logo.png" alt="Zigital Marketing Logo" class="h-12">
+                        <a href="#" class="text-2xl font-bold text-teal">Zigital Marketing</a>
+                    </a>
                 </div>
-                <span>Zigital</span><span>Marketer</span>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#" class="text-accent font-medium hover:text-primary transition-colors animate-border">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-accent font-medium hover:text-primary transition-colors flex items-center animate-border">
+                            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="#" class="block px-4 py-2 text-accent hover:bg-gray-100 hover:text-primary">SEO Services</a>
+                            <a href="#" class="block px-4 py-2 text-accent hover:bg-gray-100 hover:text-primary">Social Media Marketing</a>
+                            <a href="#" class="block px-4 py-2 text-accent hover:bg-gray-100 hover:text-primary">PPC Advertising</a>
+                            <a href="#" class="block px-4 py-2 text-accent hover:bg-gray-100 hover:text-primary">Web Development</a>
+                            <a href="#" class="block px-4 py-2 text-accent hover:bg-gray-100 hover:text-primary">Content Marketing</a>
+                        </div>
+                    </div>
+                    <a href="#" class="text-accent font-medium hover:text-primary transition-colors animate-border">Portfolio</a>
+                    <a href="#" class="text-accent font-medium hover:text-primary transition-colors animate-border">About Us</a>
+                    <a href="#" class="text-accent font-medium hover:text-primary transition-colors animate-border">Blog</a>
+                    <a href="#" class="text-accent font-medium hover:text-primary transition-colors animate-border">Contact</a>
+                </nav>
+                
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="tel:+1234567890" class="text-accent hover:text-primary transition-colors">
+                        <i class="fas fa-phone mr-1"></i> +91 9189790112
+                    </a>
+                    <a href="#" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors">
+                        Get Quote
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="lg:hidden text-accent focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#case-studies">Case Studies</a></li>
-                <li><a href="#industries">Industries</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-cta">
-                <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu lg:hidden fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50">
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-8">
+                    <img src="logo.png" alt="Zigital Marketing Logo" class="h-10">
+                    <button id="closeMobileMenu" class="text-accent focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <nav class="space-y-4">
+                    <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2">Home</a>
+                    <div class="relative">
+                        <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2 flex justify-between items-center">
+                            Services <i class="fas fa-chevron-down text-xs"></i>
+                        </a>
+                        <div class="pl-4 mt-2 space-y-2 hidden" id="mobileServicesMenu">
+                            <a href="#" class="block text-accent hover:text-primary transition-colors py-1">SEO Services</a>
+                            <a href="#" class="block text-accent hover:text-primary transition-colors py-1">Social Media Marketing</a>
+                            <a href="#" class="block text-accent hover:text-primary transition-colors py-1">PPC Advertising</a>
+                            <a href="#" class="block text-accent hover:text-primary transition-colors py-1">Web Development</a>
+                            <a href="#" class="block text-accent hover:text-primary transition-colors py-1">Content Marketing</a>
+                        </div>
+                    </div>
+                    <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2">Portfolio</a>
+                    <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2">About Us</a>
+                    <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2">Blog</a>
+                    <a href="#" class="block text-accent font-medium hover:text-primary transition-colors py-2">Contact</a>
+                </nav>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <a href="tel:+1234567890" class="block text-accent hover:text-primary transition-colors mb-4">
+                        <i class="fas fa-phone mr-2"></i> +91 919798799
+                    </a>
+                    <a href="#" class="block bg-primary text-white text-center py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors">
+                        Get Quote
+                    </a>
+                </div>
             </div>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Expert Digital Marketing & Strategy</h1>
-                <p>Transforming brands with creativity, data, and innovation. We deliver measurable results through cutting-edge digital marketing solutions tailored to your business goals.</p>
-                <div class="hero-btns">
-                    <a href="#services" class="btn btn-primary">Explore Services</a>
-                    <a href="#contact" class="btn btn-secondary">Talk to Us</a>
+    <section class="hero-bg py-20 md:py-28">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-6">
+                        Grow Your Business With <span class="text-primary">Digital Excellence</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        We are a premier digital marketing agency that helps businesses thrive online through innovative strategies, data-driven insights, and measurable results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#" class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors text-center">
+                            Get Started
+                        </a>
+                        <a href="#" class="border-2 border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition-colors text-center">
+                            Our Services
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Digital Marketing" class="rounded-lg shadow-lg max-w-full h-auto">
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-image-content">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Data-Driven Results</h3>
-                    <p>We focus on metrics that matter to your business growth</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-accent mb-4">Why Choose Zigital Marketing?</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We combine creativity with data-driven strategies to deliver exceptional results for our clients across various industries.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 service-card bg-white rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-accent mb-3">Data-Driven Strategies</h3>
+                    <p class="text-gray-600">We use analytics and insights to create marketing strategies that deliver measurable results.</p>
+                </div>
+                
+                <div class="text-center p-6 service-card bg-white rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-accent mb-3">Expert Team</h3>
+                    <p class="text-gray-600">Our team consists of certified professionals with years of experience in digital marketing.</p>
+                </div>
+                
+                <div class="text-center p-6 service-card bg-white rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bullseye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-accent mb-3">Targeted Approach</h3>
+                    <p class="text-gray-600">We create customized strategies that target your specific audience and business goals.</p>
+                </div>
+                
+                <div class="text-center p-6 service-card bg-white rounded-lg shadow-md">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-accent mb-3">Fast Results</h3>
+                    <p class="text-gray-600">Our efficient processes and proven methodologies deliver quick and impactful results.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive digital marketing services designed to drive growth and maximize your online presence.</p>
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-accent mb-4">Our Digital Marketing Services</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We offer a comprehensive range of digital marketing services to help your business grow and succeed online.
+                </p>
             </div>
-            <div class="services-grid">
-                <!-- Service Card 1 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-search text-white text-5xl"></i>
                     </div>
-                    <h3>Search Marketing</h3>
-                    <p>Comprehensive SEO and PPC strategies to increase visibility and drive qualified traffic to your website.</p>
-                    <ul class="service-features">
-                        <li>Keyword Research & Strategy</li>
-                        <li>On-Page & Technical SEO</li>
-                        <li>PPC Campaign Management</li>
-                        <li>Conversion Rate Optimization</li>
-                    </ul>
-                    <div class="service-price">From $999/month</div>
-                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">Search Engine Optimization</h3>
+                        <p class="text-gray-600 mb-4">Improve your website's visibility on search engines and drive organic traffic with our proven SEO strategies.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- Service Card 2 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-share-alt"></i>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-white text-5xl"></i>
                     </div>
-                    <h3>Social Media Strategy</h3>
-                    <p>Engage your audience and build brand loyalty through strategic social media management and advertising.</p>
-                    <ul class="service-features">
-                        <li>Content Strategy & Calendar</li>
-                        <li>Community Management</li>
-                        <li>Paid Social Advertising</li>
-                        <li>Performance Analytics</li>
-                    </ul>
-                    <div class="service-price">From $799/month</div>
-                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">Social Media Marketing</h3>
+                        <p class="text-gray-600 mb-4">Engage with your audience and build brand awareness through strategic social media campaigns.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- Service Card 3 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-ad text-white text-5xl"></i>
                     </div>
-                    <h3>Branding & Visual Identity</h3>
-                    <p>Create a memorable brand that resonates with your target audience and stands out from competitors.</p>
-                    <ul class="service-features">
-                        <li>Brand Strategy Development</li>
-                        <li>Logo & Visual Identity Design</li>
-                        <li>Brand Guidelines</li>
-                        <li>Brand Voice & Messaging</li>
-                    </ul>
-                    <div class="service-price">From $1,499/project</div>
-                    <a href="#contact" class="btn btn-secondary">Learn More</a>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">PPC Advertising</h3>
+                        <p class="text-gray-600 mb-4">Drive targeted traffic to your website with strategic pay-per-click campaigns on Google and social platforms.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">Web Development</h3>
+                        <p class="text-gray-600 mb-4">Create stunning, responsive websites that provide exceptional user experiences and drive conversions.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-envelope-open-text text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">Email Marketing</h3>
+                        <p class="text-gray-600 mb-4">Nurture leads and build customer relationships with targeted email campaigns that drive engagement.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden service-card">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fas fa-pencil-alt text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-accent mb-3">Content Marketing</h3>
+                        <p class="text-gray-600 mb-4">Create valuable, relevant content that attracts and engages your target audience across multiple channels.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors inline-flex items-center">
+                    View All Services <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="counter mb-2">250+</div>
+                    <p class="text-xl">Projects Completed</p>
+                </div>
+                <div>
+                    <div class="counter mb-2">98%</div>
+                    <p class="text-xl">Client Satisfaction</p>
+                </div>
+                <div>
+                    <div class="counter mb-2">150+</div>
+                    <p class="text-xl">Happy Clients</p>
+                </div>
+                <div>
+                    <div class="counter mb-2">5+</div>
+                    <p class="text-xl">Years Experience</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="why-us">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose Zigital Marketer</h2>
-                <p>We combine data-driven strategies with creative excellence to deliver exceptional results for our clients.</p>
+    <!-- Portfolio Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-accent mb-4">Our Portfolio</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Take a look at some of our successful digital marketing campaigns and web development projects.
+                </p>
             </div>
             
-            <div class="stats-container">
-                <div class="stat">
-                    <span class="stat-number" data-count="150">0</span>
-                    <span class="stat-label">Clients Served</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Portfolio Item" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <div class="text-white text-center">
+                            <h3 class="text-xl font-semibold mb-2">E-commerce Website</h3>
+                            <p>Increased conversions by 45%</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" data-count="8">0</span>
-                    <span class="stat-label">Years Experience</span>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Portfolio Item" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <div class="text-white text-center">
+                            <h3 class="text-xl font-semibold mb-2">SEO Campaign</h3>
+                            <p>Ranked #1 for 15+ keywords</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" data-count="245">0</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" data-count="97">0</span>
-                    <span class="stat-label">Client Satisfaction</span>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Portfolio Item" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay">
+                        <div class="text-white text-center">
+                            <h3 class="text-xl font-semibold mb-2">Social Media Strategy</h3>
+                            <p>Increased engagement by 300%</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3>Data-Driven Approach</h3>
-                    <p>We base all strategies on comprehensive data analysis to ensure maximum ROI.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Creative Innovation</h3>
-                    <p>Our team brings fresh, innovative ideas to every project, setting you apart from competitors.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Rapid Implementation</h3>
-                    <p>We move quickly from strategy to execution, delivering results faster than traditional agencies.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Partnership Focused</h3>
-                    <p>We work as an extension of your team, building long-term relationships for sustained growth.</p>
-                </div>
+            <div class="text-center mt-12">
+                <a href="#" class="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors inline-flex items-center">
+                    View Full Portfolio <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section id="case-studies" class="case-studies">
-        <div class="container">
-            <div class="section-header">
-                <h2>Case Studies</h2>
-                <p>Real results from our work with clients across various industries.</p>
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-accent mb-4">What Our Clients Say</h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our clients have to say about working with us.
+                </p>
             </div>
             
-            <div class="case-studies-grid">
-                <!-- Case Study 1 -->
-                <div class="case-study-card">
-                    <div class="case-study-image">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>E-commerce Growth</h3>
-                        <p>How we helped an online retailer increase revenue by 150% in 6 months.</p>
-                        <div class="case-study-stats">
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">150%</div>
-                                <div class="case-study-stat-label">Revenue Increase</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">80%</div>
-                                <div class="case-study-stat-label">Traffic Growth</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">6</div>
-                                <div class="case-study-stat-label">Months</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-secondary">Read Full Study</a>
-                    </div>
-                </div>
-                
-                <!-- Case Study 2 -->
-                <div class="case-study-card">
-                    <div class="case-study-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>App Launch Success</h3>
-                        <p>Strategic marketing for a mobile app that achieved 50,000 downloads in first month.</p>
-                        <div class="case-study-stats">
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">50K</div>
-                                <div class="case-study-stat-label">Downloads</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">4.8</div>
-                                <div class="case-study-stat-label">App Rating</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">1</div>
-                                <div class="case-study-stat-label">Month</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-secondary">Read Full Study</a>
-                    </div>
-                </div>
-                
-                <!-- Case Study 3 -->
-                <div class="case-study-card">
-                    <div class="case-study-image">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>B2B Lead Generation</h3>
-                        <p>How we generated 500+ qualified leads for a B2B software company in 3 months.</p>
-                        <div class="case-study-stats">
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">500+</div>
-                                <div class="case-study-stat-label">Qualified Leads</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">35%</div>
-                                <div class="case-study-stat-label">Conversion Rate</div>
-                            </div>
-                            <div class="case-study-stat">
-                                <div class="case-study-stat-number">3</div>
-                                <div class="case-study-stat-label">Months</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-secondary">Read Full Study</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Industries Section -->
-    <section id="industries" class="industries">
-        <div class="container">
-            <div class="section-header">
-                <h2>Industries We Serve</h2>
-                <p>We have experience working with businesses across various sectors.</p>
-            </div>
-            
-            <div class="industries-grid">
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>E-commerce</h3>
-                    <p>Drive sales and increase customer lifetime value.</p>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Technology</h3>
-                    <p>Position your tech solution in a competitive market.</p>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Healthcare</h3>
-                    <p>Build trust and connect with patients.</p>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Education</h3>
-                    <p>Reach students and educators effectively.</p>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Restaurant</h3>
-                    <p>Increase reservations and build loyalty.</p>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Professional Services</h3>
-                    <p>Establish authority and generate leads.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Team</h2>
-                <p>Meet the experts behind Zigital Marketer.</p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-image">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Alex Johnson</h3>
-                        <div class="member-role">Founder & CEO</div>
-                        <p>10+ years in digital marketing with expertise in growth strategy and analytics.</p>
-                        <div class="member-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Sarah Williams</h3>
-                        <div class="member-role">Creative Director</div>
-                        <p>Brand strategist and visual designer with a passion for storytelling.</p>
-                        <div class="member-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-dribbble"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Michael Chen</h3>
-                        <div class="member-role">SEO Specialist</div>
-                        <p>Technical SEO expert with a background in web development.</p>
-                        <div class="member-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>Emily Rodriguez</h3>
-                        <div class="member-role">Social Media Manager</div>
-                        <p>Content creator and community builder with a knack for viral campaigns.</p>
-                        <div class="member-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest Insights</h2>
-                <p>Stay updated with the latest trends and strategies in digital marketing.</p>
-            </div>
-            
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> May 15, 2023</span>
-                            <span><i class="far fa-clock"></i> 5 min read</span>
-                        </div>
-                        <h3>The Future of AI in Digital Marketing</h3>
-                        <p>How artificial intelligence is transforming marketing strategies and what to expect in the coming years.</p>
-                        <a href="#" class="btn btn-secondary">Read More</a>
-                    </div>
-                </div>
-                
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> April 28, 2023</span>
-                            <span><i class="far fa-clock"></i> 7 min read</span>
-                        </div>
-                        <h3>SEO Trends You Can't Ignore in 2023</h3>
-                        <p>Discover the latest SEO strategies that will help you rank higher and drive more organic traffic.</p>
-                        <a href="#" class="btn btn-secondary">Read More</a>
-                    </div>
-                </div>
-                
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> April 10, 2023</span>
-                            <span><i class="far fa-clock"></i> 4 min read</span>
-                        </div>
-                        <h3>Why Video Content is Dominating Social Media</h3>
-                        <p>Learn how to leverage video content to increase engagement and reach on social platforms.</p>
-                        <a href="#" class="btn btn-secondary">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Start Your Digital Transformation</h2>
-                <p>Ready to take your business to the next level? Get in touch for a free consultation.</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            JD
                         </div>
                         <div>
-                            <h3>Email Us</h3>
-                            <p>hello@zigitalmarketer.com</p>
+                            <h4 class="font-semibold text-accent">John Doe</h4>
+                            <p class="text-gray-500 text-sm">CEO, Tech Solutions Inc.</p>
                         </div>
                     </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Call Us</h3>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Visit Us</h3>
-                            <p>123 Digital Avenue, Tech City</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <p class="text-gray-600">
+                        "Working with Zigital Marketing transformed our online presence. Our website traffic increased by 200% in just three months, and we're seeing real ROI from our digital campaigns."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            SJ
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" required>
+                        <div>
+                            <h4 class="font-semibold text-accent">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">Marketing Director, Retail Pro</p>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Interest</label>
-                            <select id="service" class="form-control" required>
-                                <option value="">Select a service</option>
-                                <option value="seo">Search Marketing</option>
-                                <option value="social">Social Media Strategy</option>
-                                <option value="branding">Branding & Visual Identity</option>
-                                <option value="content">Content & Copywriting</option>
-                                <option value="analytics">Analytics & Reporting</option>
-                                <option value="web">Web Development</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                    </div>
+                    <p class="text-gray-600">
+                        "The team at Zigital Marketing understood our brand from day one. Their social media strategies have helped us connect with our audience in ways we never thought possible."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                 </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            MR
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-accent">Michael Roberts</h4>
+                            <p class="text-gray-500 text-sm">Founder, HealthPlus</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "Their SEO expertise helped us rank for competitive keywords we've been trying to target for years. The results speak for themselves - our organic traffic is up 150%."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Grow Your Business?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Let's discuss how our digital marketing strategies can help you achieve your business goals.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#" class="bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors">
+                    Get Free Consultation
+                </a>
+                <a href="#" class="border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-primary transition-colors">
+                    Contact Us
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Zigital Marketer</h3>
-                    <p>Transforming brands with creativity, data, and innovation. We deliver measurable results through cutting-edge digital marketing solutions.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+    <footer class="footer-bg pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <img src="https://via.placeholder.com/200x60.png?text=ZIGITAL+MARKETING" alt="Zigital Marketing Logo" class="h-10 mb-4">
+                    <p class="text-gray-600 mb-4">
+                        We are a premier digital marketing agency dedicated to helping businesses grow through innovative digital strategies and measurable results.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#case-studies">Case Studies</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                <div>
+                    <h3 class="text-lg font-semibold text-accent mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Services</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Portfolio</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Search Marketing</a></li>
-                        <li><a href="#">Social Media Strategy</a></li>
-                        <li><a href="#">Branding & Identity</a></li>
-                        <li><a href="#">Content & Copywriting</a></li>
-                        <li><a href="#">Analytics & Reporting</a></li>
+                <div>
+                    <h3 class="text-lg font-semibold text-accent mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">SEO Services</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Social Media Marketing</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">PPC Advertising</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Web Development</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Content Marketing</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Email Marketing</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Free Guides</a></li>
-                        <li><a href="#">Webinars</a></li>
-                        <li><a href="#">Skill Test</a></li>
+                <div>
+                    <h3 class="text-lg font-semibold text-accent mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-600">123 Business Avenue, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-600">+1 (234) 567-890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-600">info@zigitalmarketing.com</span>
+                        </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2023 Zigital Marketer. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <div class="pt-8 border-t border-gray-200 text-center">
+                <p class="text-gray-600">
+                    &copy; 2023 Zigital Marketing. All rights reserved.
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top bg-primary text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition-colors">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
         });
-
-        // Interactive cursor effects
-        document.querySelectorAll('a, button, .service-card, .feature, .step, .testimonial-card, .case-study-card, .industry-card, .team-member, .blog-card').forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursorFollower.style.transform = 'scale(1.5)';
-                cursorFollower.style.opacity = '0.7';
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-                cursorFollower.style.opacity = '0.5';
-            });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
         });
-
-        // Animate stats counter
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            
-            stats.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-count'));
-                const duration = 2000; // 2 seconds
-                const step = target / (duration / 16); // 60fps
-                let current = 0;
+        
+        // Mobile Services Menu Toggle
+        const servicesLink = document.querySelector('nav a[href="#"]');
+        servicesLink.addEventListener('click', (e) => {
+            if (window.innerWidth < 1024) {
+                e.preventDefault();
+                mobileServicesMenu.classList.toggle('hidden');
+            }
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
                 
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current);
-                }, 16);
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
             });
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -100px 0px'
         };
-
+        
+        // Initialize counters when they come into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('stats-container')) {
-                        animateStats();
-                    }
-                    entry.target.classList.add('animate-in');
+                    animateCounters();
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Observe elements for animation
-            const elementsToObserve = document.querySelectorAll('.service-card, .feature, .step, .testimonial-card, .case-study-card, .industry-card, .team-member, .blog-card');
-            elementsToObserve.forEach(el => observer.observe(el));
-            
-            // Observe stats container
-            const statsContainer = document.querySelector('.stats-container');
-            if (statsContainer) observer.observe(statsContainer);
-            
-            // Form submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    contactForm.reset();
-                });
-            }
-            
-            // Mobile menu toggle
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (mobileMenu && navLinks) {
-                mobileMenu.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
-            }
+        }, { threshold: 0.5 });
+        
+        counters.forEach(counter => {
+            observer.observe(counter);
         });
     </script>
 </body>
